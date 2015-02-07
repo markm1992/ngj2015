@@ -4,7 +4,8 @@ using System.Collections;
 public class gameStart : MonoBehaviour {
 
 	public PlayerController player;
-	Transform pos;
+	Quaternion rot;
+	Vector3 pos;
 	public Camera menuCam;
 	public Camera mainCam;
 	bool movement = false;
@@ -13,8 +14,11 @@ public class gameStart : MonoBehaviour {
 	public float onCharLength = .5f;
 	public Canvas menu;
 	// Use this for initialization
+
 	void Start () {
-	
+
+		rot = menuCam.transform.rotation;
+		pos = menuCam.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -24,11 +28,6 @@ public class gameStart : MonoBehaviour {
 			{
 				menuCam.transform.position = Vector3.Lerp(menuCam.transform.position, mainCam.transform.position, Time.deltaTime * lerpLength);
 				menuCam.transform.rotation = Quaternion.Lerp(menuCam.transform.rotation, mainCam.transform.rotation, lerpLength * Time.deltaTime);
-			}
-			else
-			{
-				menuCam.transform.position = pos.position;
-				menuCam.transform.rotation = pos.rotation;
 			}
 		}
 	}
@@ -46,13 +45,15 @@ public class gameStart : MonoBehaviour {
 	IEnumerator startgame()
 	{
 		menu.enabled = false;
-		pos = transform;
+
 		yield return new WaitForSeconds(.5f);
 		//tempCamPos = mainCam.transform;
 		movement = true;
 		there = true;
 		yield return new WaitForSeconds(lerpLength);
 		there = false;
+		menuCam.transform.position = pos;
+		menuCam.transform.rotation = rot;
 		mainCam.enabled = true;
 		menuCam.enabled = false;
 		yield return new WaitForSeconds(onCharLength);

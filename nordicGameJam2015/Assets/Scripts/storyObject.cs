@@ -2,9 +2,10 @@
 using System.Collections;
 
 public class storyObject : MonoBehaviour {
-	public AnimationClip anim;
 	public int storyNum;
 	public storyLine story;
+	bool done = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -15,19 +16,17 @@ public class storyObject : MonoBehaviour {
 		
 	}
 
-	/*void OnTriggerStay(Collider other)
-	{
-		if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E))
-		{
-			//animation.Play(anim.name);
-			story.trigger(storyNum);
-			GameObject.Destroy(this.gameObject);
-		}
-	}*/
-
 	public void trigger()
 	{
-		story.trigger(storyNum);
-		GameObject.Destroy(this.gameObject);
+		if (!done) {
+			story.trigger (storyNum);
+			animation.Play ();
+			done = true;
+		}
+	}
+
+	public void reset()
+	{
+		done = false;
 	}
 }

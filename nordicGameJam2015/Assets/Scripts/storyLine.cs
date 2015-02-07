@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class storyLine : MonoBehaviour {
 
@@ -16,10 +17,12 @@ public class storyLine : MonoBehaviour {
 	bool there = true;
 	public Camera menuCam;
 	public Canvas menu;
+	public Text bearText;
+	public storyObject[] storyObjects = new storyObject[6];
+
 
 	// Use this for initialization
 	void Start () {
-
 	}
 	
 	// Update is called once per frame
@@ -58,16 +61,36 @@ public class storyLine : MonoBehaviour {
 		player.enabled = false;
 		mainCam.enabled = false;
 		bearCam.enabled = true;
-		Instantiate(bear,spawn.position,Quaternion.identity);
+		GameObject tempBear = Instantiate(bear,spawn.position,Quaternion.identity) as GameObject;
+		bearText = tempBear.GetComponentInChildren<Text> ();
+		switch ((steps - 1) / 3) {
+		case 0:
+			bearText.text = "My Porridge!";
+			break;
+		case 1:
+			bearText.text = "Who is sleeping in my bed?!";
+			break;
+		case 2:
+			break;
+		}
 		yield return new WaitForSeconds(lerpLength+lookAtDuration);
 		there = false;
 		yield return new WaitForSeconds(lerpLength + .5f);
 		//play death
 		yield return new WaitForSeconds(1f);
+		mapEnd (tempBear);
+		yield return true;
+	}
+
+	void mapEnd(GameObject destroyObj)
+	{
+		for (int i = 0; i<storyObjects.Length; i++) {
+			storyObjects[i].reset();
+		}
 		menuCam.enabled = true;
 		menu.enabled = true;
+		GameObject.Destroy (destroyObj);
 		bearCam.enabled = false;
 		StopCoroutine ("bearSpawn");
-		yield return true;
 	}
 }
