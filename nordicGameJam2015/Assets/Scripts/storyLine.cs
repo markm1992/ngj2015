@@ -17,13 +17,18 @@ public class storyLine : MonoBehaviour {
 	bool there = true;
 	public Camera menuCam;
 	public Canvas menu;
-	public Text bearText;
+	public Canvas gui;
+	Text bearText;
 	public storyObject[] storyObjects = new storyObject[6];
 	public GameObject obstacle1;
 	public GameObject obstacle2;
+	Vector3 position;
+	Quaternion rotation;
 
 	// Use this for initialization
 	void Start () {
+		rotation = player.transform.rotation;
+		position = player.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -57,7 +62,7 @@ public class storyLine : MonoBehaviour {
 
 	IEnumerator bearSpawn()
 	{
-		yield return new WaitForSeconds(.5f);
+		yield return new WaitForSeconds(1.5f);
 		bearCam.transform.position = mainCam.transform.position;
 		bearCam.transform.rotation = mainCam.transform.rotation;
 		//tempCamPos = mainCam.transform;
@@ -68,7 +73,7 @@ public class storyLine : MonoBehaviour {
 		bearCam.enabled = true;
 		GameObject tempBear = Instantiate(bear,spawn.position,Quaternion.identity) as GameObject;
 		bearText = tempBear.GetComponentInChildren<Text> ();
-		switch ((steps - 1) / 3) {
+		switch ((steps) / 3) {
 		case 0:
 			bearText.text = "My Porridge!";
 			break;
@@ -81,20 +86,23 @@ public class storyLine : MonoBehaviour {
 		yield return new WaitForSeconds(lerpLength+lookAtDuration);
 		there = false;
 		yield return new WaitForSeconds(lerpLength + .5f);
+		gui.enabled = false;
 		//play death
 		yield return new WaitForSeconds(1f);
-		mapEnd (tempBear);
+		mapEnd ();
+		GameObject.Destroy (tempBear);
 		yield return true;
 	}
 
-	void mapEnd(GameObject destroyObj)
+	void mapEnd()
 	{
+		player.transform.position = position;
+		player.transform.rotation = rotation;
 		for (int i = 0; i<storyObjects.Length; i++) {
 			storyObjects[i].reset();
 		}
 		menuCam.enabled = true;
 		menu.enabled = true;
-		GameObject.Destroy (destroyObj);
 		bearCam.enabled = false;
 		StopCoroutine ("bearSpawn");
 	}

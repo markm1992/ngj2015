@@ -13,6 +13,7 @@ public class gameStart : MonoBehaviour {
 	public float lerpLength = 3f;
 	public float onCharLength = .5f;
 	public Canvas menu;
+	public Canvas gui;
 	// Use this for initialization
 
 	void Start () {
@@ -52,6 +53,7 @@ public class gameStart : MonoBehaviour {
 		there = true;
 		yield return new WaitForSeconds(lerpLength);
 		there = false;
+		gui.enabled = true;
 		menuCam.transform.position = pos;
 		menuCam.transform.rotation = rot;
 		mainCam.enabled = true;
