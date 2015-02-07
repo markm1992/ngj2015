@@ -1,17 +1,13 @@
 fileFormatVersion: 2
-guid: 99a3d7ea8bb3f4e97a7fa1e4a5caf056
+guid: 9aef6a6cf123e4ad8aea2512bef9cd91
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: table_GEO
     400000: //RootNode
-    400002: table_GEO
     2300000: //RootNode
-    2300002: table_GEO
     3300000: //RootNode
-    3300002: table_GEO
-    4300000: table_GEO
+    4300000: pCube41
     9500000: //RootNode
   materials:
     importMaterials: 1

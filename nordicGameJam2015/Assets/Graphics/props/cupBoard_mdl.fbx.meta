@@ -1,17 +1,27 @@
 fileFormatVersion: 2
-guid: 99a3d7ea8bb3f4e97a7fa1e4a5caf056
+guid: 50bf2709a3912498cb594e9917f4fc44
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: table_GEO
-    400000: //RootNode
-    400002: table_GEO
-    2300000: //RootNode
-    2300002: table_GEO
-    3300000: //RootNode
-    3300002: table_GEO
-    4300000: table_GEO
+    100000: cupboard_GEO
+    100002: //RootNode
+    100004: group2
+    100006: L_cupboardDoor_GEO
+    100008: R_cupboardDoor_GEO
+    400000: cupboard_GEO
+    400002: //RootNode
+    400004: group2
+    400006: L_cupboardDoor_GEO
+    400008: R_cupboardDoor_GEO
+    2300000: cupboard_GEO
+    2300002: L_cupboardDoor_GEO
+    2300004: R_cupboardDoor_GEO
+    3300000: cupboard_GEO
+    3300002: L_cupboardDoor_GEO
+    3300004: R_cupboardDoor_GEO
+    4300000: cupboard_GEO
+    4300002: L_cupboardDoor_GEO
+    4300004: R_cupboardDoor_GEO
     9500000: //RootNode
   materials:
     importMaterials: 1
