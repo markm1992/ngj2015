@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\PlayerWinWalk.cs" />
      <Compile Include="Assets\Scripts\firePlace.cs" />
      <Compile Include="Assets\Scripts\gameStart.cs" />
      <Compile Include="Assets\Scripts\storyLine.cs" />
