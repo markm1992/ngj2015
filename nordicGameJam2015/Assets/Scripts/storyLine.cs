@@ -93,4 +93,9 @@ public class storyLine : MonoBehaviour {
 		bearCam.enabled = false;
 		StopCoroutine ("bearSpawn");
 	}
+
+	public void win()
+	{
+		Application.LoadLevel ("win");
+	}
 }

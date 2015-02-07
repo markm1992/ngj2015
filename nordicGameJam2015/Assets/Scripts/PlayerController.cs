@@ -30,9 +30,15 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerStay(Collider other)
 	{
-		if(other.tag == "Story" && Input.GetKeyDown(KeyCode.E))
-		{
+		if (other.tag == "Story" && Input.GetKeyDown (KeyCode.E)) {
 			other.gameObject.SendMessage ("trigger", SendMessageOptions.DontRequireReceiver);
+		} else if (other.tag == "Finish") {
+			win ();
 		}
+	}
+
+	void win()
+	{
+		story.win();
 	}
 }

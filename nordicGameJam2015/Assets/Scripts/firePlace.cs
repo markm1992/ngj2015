@@ -6,7 +6,6 @@ public class firePlace : MonoBehaviour {
 	public GameObject fire;
 	// Use this for initialization
 	void Start () {
-        renderer.material.color = Color.red;
 	}
 	
 	// Update is called once per frame
@@ -22,12 +21,10 @@ public class firePlace : MonoBehaviour {
             if (on)
             {
 				fire.SetActive(true);
-                renderer.material.color = Color.red;
             }
             else
             {
 				fire.SetActive(false);
-                renderer.material.color = Color.white;
             }
         }
     }
