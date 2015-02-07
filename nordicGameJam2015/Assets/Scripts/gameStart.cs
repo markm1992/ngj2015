@@ -13,6 +13,7 @@ public class gameStart : MonoBehaviour {
 	public float lerpLength = 3f;
 	public float onCharLength = .5f;
 	public Canvas menu;
+	public Canvas gui;
 	// Use this for initialization
 
 	void Start () {
@@ -44,10 +45,9 @@ public class gameStart : MonoBehaviour {
 
 	IEnumerator startgame()
 	{
+		player.resetObs ();
 		menu.enabled = false;
-
 		yield return new WaitForSeconds(.5f);
-		//tempCamPos = mainCam.transform;
 		movement = true;
 		there = true;
 		yield return new WaitForSeconds(lerpLength);
@@ -57,9 +57,8 @@ public class gameStart : MonoBehaviour {
 		mainCam.enabled = true;
 		menuCam.enabled = false;
 		yield return new WaitForSeconds(onCharLength);
-		//play animation
-		//play sound
-		player.enabled = true;
+		player.canInput = true;
+		gui.enabled = true;
 		yield return true;
 	}
 }

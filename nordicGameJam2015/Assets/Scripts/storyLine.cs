@@ -17,13 +17,19 @@ public class storyLine : MonoBehaviour {
 	bool there = true;
 	public Camera menuCam;
 	public Canvas menu;
-	public Text bearText;
+	public Canvas gui;
+	Text bearText;
 	public storyObject[] storyObjects = new storyObject[6];
 	public GameObject obstacle1;
 	public GameObject obstacle2;
+	Vector3 pos;
+	Quaternion rot;
+
 
 	// Use this for initialization
 	void Start () {
+		pos = player.transform.position;
+		rot = player.transform.rotation;
 	}
 	
 	// Update is called once per frame
@@ -63,7 +69,7 @@ public class storyLine : MonoBehaviour {
 		//tempCamPos = mainCam.transform;
 		bearActive = true;
 		there = true;
-		player.enabled = false;
+		player.canInput = false;
 		mainCam.enabled = false;
 		bearCam.enabled = true;
 		GameObject tempBear = Instantiate(bear,spawn.position,Quaternion.identity) as GameObject;
@@ -81,6 +87,7 @@ public class storyLine : MonoBehaviour {
 		yield return new WaitForSeconds(lerpLength+lookAtDuration);
 		there = false;
 		yield return new WaitForSeconds(lerpLength + .5f);
+		gui.enabled = false;
 		//play death
 		yield return new WaitForSeconds(1f);
 		mapEnd (tempBear);
@@ -89,6 +96,8 @@ public class storyLine : MonoBehaviour {
 
 	void mapEnd(GameObject destroyObj)
 	{
+		player.transform.position = pos;
+		player.transform.rotation = rot;
 		for (int i = 0; i<storyObjects.Length; i++) {
 			storyObjects[i].reset();
 		}
