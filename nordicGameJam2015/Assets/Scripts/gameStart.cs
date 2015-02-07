@@ -52,7 +52,6 @@ public class gameStart : MonoBehaviour {
 		there = true;
 		yield return new WaitForSeconds(lerpLength);
 		there = false;
-		gui.enabled = true;
 		menuCam.transform.position = pos;
 		menuCam.transform.rotation = rot;
 		mainCam.enabled = true;

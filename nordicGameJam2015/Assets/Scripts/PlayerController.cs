@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour {
     float tsInput;
 	public storyLine story;
 	public Animator animator;
-	bool canInput = true;
+	public bool canInput = false;
+	bool obs = true;
+	bool timerStarted = false;
 
 	// Use this for initialization
 	void Start () {
-	
+		canInput = false;
 	}
 	
 	// Update is called once per frame
@@ -38,28 +40,53 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerStay(Collider other)
 	{
 		if (other.tag == "Story" && Input.GetKeyDown (KeyCode.E)) {
-			animator.SetFloat("speed", 0);
 			canInput = false;
-			StartCoroutine("interact");
+			animator.SetFloat ("speed", 0);
+			animator.StopPlayback();
+			StartCoroutine("interactable");
 			other.gameObject.SendMessage ("trigger", SendMessageOptions.DontRequireReceiver);
-		} else if (other.tag == "Finish") {
-			canInput = false;
-			animator.SetFloat("speed", 0);
-			win ();
-		} else if (other.tag == "Obstacle") {
-			canInput = false;
-			animator.SetFloat("speed", 0);
+		} else if (other.tag == "Finish" && !timerStarted) {
+			timerStarted = true;
+			StartCoroutine("timer");
+		}
+	}
+
+	void OnTriggerExit(Collider other)
+	{
+		if (other.tag == "Finish") {
+			timerStarted = false;
+			StopCoroutine("timer");
+		}
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Obstacle" && obs) {
+			animator.SetFloat ("speed", 0);
+			animator.StopPlayback();
+			obs = false;
 			story.bearAtk();
 		}
 	}
-	
-	IEnumerator interact()
+
+	IEnumerator timer()
 	{
-		//play interact animation
-		yield return new WaitForSeconds (1.5f);
+		yield return new WaitForSeconds (3f);
+		win ();
+	}
+
+	public void resetObs()
+	{
+		obs = true;
+	}
+
+	IEnumerator interactable()
+	{
+		yield return new WaitForSeconds(2f);
 		canInput = true;
 		yield return true;
 	}
+
 	void win()
 	{
 		story.win();
