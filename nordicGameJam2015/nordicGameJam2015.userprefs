@@ -4,7 +4,8 @@
     <Files>
       <File FileName="Assets\Scripts\firePlace.cs" Line="8" Column="17" />
       <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\storyLine.cs" Line="12" Column="2" />
+      <File FileName="Assets\Scripts\storyLine.cs" Line="16" Column="29" />
+      <File FileName="Assets\Scripts\storyObject.cs" Line="24" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
