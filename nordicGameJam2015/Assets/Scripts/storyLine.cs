@@ -19,7 +19,8 @@ public class storyLine : MonoBehaviour {
 	public Canvas menu;
 	public Text bearText;
 	public storyObject[] storyObjects = new storyObject[6];
-
+	public GameObject obstacle1;
+	public GameObject obstacle2;
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +46,10 @@ public class storyLine : MonoBehaviour {
 	{
 		if ((steps - 1) / 3 == (num - 1) / 3) {
 			steps--;
+			if(steps == 3)
+				obstacle1.SetActive(true);
+			else if(steps == 0)
+				obstacle2.SetActive(false);
 			StopCoroutine(bearSpawn ());
 			StartCoroutine(bearSpawn());
 		}
@@ -92,5 +97,15 @@ public class storyLine : MonoBehaviour {
 		GameObject.Destroy (destroyObj);
 		bearCam.enabled = false;
 		StopCoroutine ("bearSpawn");
+	}
+
+	public void win()
+	{
+		Application.LoadLevel ("win");
+	}
+
+	public void bearAtk()
+	{
+		StartCoroutine ("bearSpawn");
 	}
 }

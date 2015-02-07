@@ -19,7 +19,7 @@ public class storyObject : MonoBehaviour {
 	public void trigger()
 	{
 		if (!done) {
-			story.trigger (storyNum);
+			story.trigger(storyNum);
 			animation.Play ();
 			done = true;
 		}
