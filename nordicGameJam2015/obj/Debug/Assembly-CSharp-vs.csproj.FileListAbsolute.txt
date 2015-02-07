@@ -1,0 +1,11 @@
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\Temp\bin\Debug\UnityEngine.UI.dll
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\Temp\bin\Debug\nunit.framework.dll
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\obj\Debug\Assembly-CSharp.dll
+C:\Users\Mark\Documents\GitHub\ngj2015\nordicGameJam2015\obj\Debug\Assembly-CSharp.pdb
