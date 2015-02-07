@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
     public float turnSpeed = 4;
     float msInput;
     float tsInput;
+	public storyLine story;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -24,5 +26,13 @@ public class PlayerController : MonoBehaviour {
             rsInput = Input.GetAxis("Mouse X");
             transform.Rotate(new Vector3(0, rsInput * rotateSpeed * Time.deltaTime, 0));
         }
+	}
+
+	void OnTriggerStay(Collider other)
+	{
+		if(other.tag == "Story" && Input.GetKeyDown(KeyCode.E))
+		{
+			other.gameObject.SendMessage ("trigger", SendMessageOptions.DontRequireReceiver);
+		}
 	}
 }

@@ -15,6 +15,8 @@ public class storyLine : MonoBehaviour {
 	public float lerpLength = 2f;
 	public float lookAtDuration = 2f;
 	bool there = true;
+	public Camera menuCam;
+	public Canvas menu;
 
 	// Use this for initialization
 	void Start () {
@@ -59,14 +61,14 @@ public class storyLine : MonoBehaviour {
 		bearCam.enabled = true;
 		Instantiate(bear,spawn.position,Quaternion.identity);
 		yield return new WaitForSeconds(lerpLength+lookAtDuration);
-
 		there = false;
-		yield return new WaitForSeconds(lerpLength);
-		mainCam.enabled = true;
+		yield return new WaitForSeconds(lerpLength + .5f);
+		//play death
+		yield return new WaitForSeconds(1f);
+		menuCam.enabled = true;
+		menu.enabled = true;
 		bearCam.enabled = false;
-		player.enabled = true;
 		StopCoroutine ("bearSpawn");
 		yield return true;
-		//change room/darken room
 	}
 }

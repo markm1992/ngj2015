@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\firePlace.cs" />
+     <Compile Include="Assets\Scripts\gameStart.cs" />
      <Compile Include="Assets\Scripts\storyLine.cs" />
      <Compile Include="Assets\Scripts\storyObject.cs" />
      <None Include="Assets\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
