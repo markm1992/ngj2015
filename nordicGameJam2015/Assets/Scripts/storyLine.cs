@@ -7,7 +7,6 @@ public class storyLine : MonoBehaviour {
 	public GameObject bear;
 	public Transform spawn;
 	public Camera mainCam;
-	//Transform tempCamPos;
 	public Transform bearCamPos;
 	public Camera bearCam;
 	public PlayerController player;
@@ -34,7 +33,7 @@ public class storyLine : MonoBehaviour {
 			else
 			{
 				bearCam.transform.position = Vector3.Lerp(bearCam.transform.position, mainCam.transform.position, Time.deltaTime * lerpLength);
-				bearCam.transform.rotation = Quaternion.Lerp(bearCam.transform.rotation, bearCamPos.rotation, lerpLength * Time.deltaTime);
+				bearCam.transform.rotation = Quaternion.Lerp(bearCam.transform.rotation, mainCam.transform.rotation, lerpLength * Time.deltaTime);
 			}
 		}
 	}

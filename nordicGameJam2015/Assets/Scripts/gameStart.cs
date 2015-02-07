@@ -53,14 +53,11 @@ public class gameStart : MonoBehaviour {
 		there = true;
 		yield return new WaitForSeconds(lerpLength);
 		there = false;
-		menuCam.enabled = true;
-		mainCam.enabled = false;
+		mainCam.enabled = true;
+		menuCam.enabled = false;
 		yield return new WaitForSeconds(onCharLength);
 		//play animation
 		//play sound
-		
-		menuCam.enabled = false;
-		mainCam.enabled = true;
 		player.enabled = true;
 		yield return true;
 	}
