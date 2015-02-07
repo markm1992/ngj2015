@@ -15,7 +15,7 @@ public class storyObject : MonoBehaviour {
 		
 	}
 
-	void OnTriggerStay(Collider other)
+	/*void OnTriggerStay(Collider other)
 	{
 		if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E))
 		{
@@ -23,5 +23,11 @@ public class storyObject : MonoBehaviour {
 			story.trigger(storyNum);
 			GameObject.Destroy(this.gameObject);
 		}
+	}*/
+
+	public void trigger()
+	{
+		story.trigger(storyNum);
+		GameObject.Destroy(this.gameObject);
 	}
 }
