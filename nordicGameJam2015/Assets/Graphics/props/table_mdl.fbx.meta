@@ -4,9 +4,13 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: table_GEO
     400000: //RootNode
+    400002: table_GEO
     2300000: //RootNode
+    2300002: table_GEO
     3300000: //RootNode
+    3300002: table_GEO
     4300000: table_GEO
     9500000: //RootNode
   materials:

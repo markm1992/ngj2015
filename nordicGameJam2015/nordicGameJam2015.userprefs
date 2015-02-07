@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\storyObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
     <Files>
-      <File FileName="Assets\Scripts\storyLine.cs" Line="112" Column="1" />
+      <File FileName="Assets\Scripts\storyLine.cs" Line="73" Column="18" />
       <File FileName="Assets\Scripts\firePlace.cs" Line="24" Column="19" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="52" Column="1" />
-      <File FileName="Assets\Scripts\storyObject.cs" Line="27" Column="17" />
-      <File FileName="Assets\Scripts\gameStart.cs" Line="66" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="19" Column="20" />
+      <File FileName="Assets\Scripts\storyObject.cs" Line="2" Column="14" />
+      <File FileName="Assets\Scripts\gameStart.cs" Line="60" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
