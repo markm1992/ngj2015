@@ -117,7 +117,73 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: body/head
+        weight: 1
+      - path: body/head/Chair
+        weight: 1
+      - path: body/head/Chair/Lhair
+        weight: 1
+      - path: body/head/Chair/Rhair
+        weight: 1
+      - path: body/head/Leye
+        weight: 1
+      - path: body/head/Reye
+        weight: 1
+      - path: body/Larm
+        weight: 1
+      - path: body/Larm/LhandLill
+        weight: 1
+      - path: body/Larm/LhandMidd
+        weight: 1
+      - path: body/Larm/LhandPoint
+        weight: 1
+      - path: body/Larm/LhandThumb
+        weight: 1
+      - path: body/Rarm
+        weight: 1
+      - path: body/Rarm/RhandLill
+        weight: 1
+      - path: body/Rarm/RhandMidd
+        weight: 1
+      - path: body/Rarm/RhandPoint
+        weight: 1
+      - path: body/Rarm/RhandThumb
+        weight: 1
+      - path: Lleg
+        weight: 1
+      - path: Rleg
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

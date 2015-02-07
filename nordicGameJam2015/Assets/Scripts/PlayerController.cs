@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     float msInput;
     float tsInput;
 	public storyLine story;
+	public Animator animator;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,10 @@ public class PlayerController : MonoBehaviour {
         transform.Translate(new Vector3(0, 0, msInput * walkSpeed * Time.deltaTime));
         tsInput = Input.GetAxis("Horizontal");
         transform.Translate(new Vector3(tsInput * turnSpeed * Time.deltaTime, 0, 0));
+		if(Mathf.Abs(msInput ) > 0)
+			animator.SetFloat("speed", Mathf.Abs(msInput ));
+		else
+			animator.SetFloat("speed", Mathf.Abs(tsInput));
         if (Input.GetAxis("Mouse X") > .1 || Input.GetAxis("Mouse X") < -.1)
         {
             rsInput = Input.GetAxis("Mouse X");
@@ -34,6 +39,8 @@ public class PlayerController : MonoBehaviour {
 			other.gameObject.SendMessage ("trigger", SendMessageOptions.DontRequireReceiver);
 		} else if (other.tag == "Finish") {
 			win ();
+		} else if (other.tag == "Obstacle") {
+			story.bearAtk();
 		}
 	}
 
