@@ -3,7 +3,7 @@ using System.Collections;
 
 public class storyLine : MonoBehaviour {
 
-	int steps = 9;
+	int steps = 6;
 	public GameObject bear;
 	public Transform spawn;
 	public Camera mainCam;
@@ -39,13 +39,10 @@ public class storyLine : MonoBehaviour {
 
 	public void trigger(int num)
 	{
-		if ((steps - 1) / 3 > (num - 1) / 3) {
+		if ((steps - 1) / 3 == (num - 1) / 3) {
 			steps--;
-			if(steps%3 == 0)
-			{
-				StopCoroutine(bearSpawn ());
-				StartCoroutine(bearSpawn());
-			}
+			StopCoroutine(bearSpawn ());
+			StartCoroutine(bearSpawn());
 		}
 	}
 
