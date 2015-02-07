@@ -21,10 +21,12 @@ public class firePlace : MonoBehaviour {
             if (on)
             {
 				fire.SetActive(true);
+				audio.Play ();
             }
             else
             {
 				fire.SetActive(false);
+				audio.Stop();
             }
         }
     }
