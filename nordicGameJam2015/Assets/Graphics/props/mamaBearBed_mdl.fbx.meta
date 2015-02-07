@@ -1,30 +1,20 @@
 fileFormatVersion: 2
-guid: 0771c3d348aeb17478e8f7c2ddcf094b
+guid: 6426b7d80a9354edb885e32cb6c23414
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: pCube1
-    100004: pCube2
-    100006: pPlane1
-    100008: house_GEO
-    400000: //RootNode
-    400002: pCube1
-    400004: pCube2
-    400006: pPlane1
-    400008: house_GEO
-    2300000: pCube1
-    2300002: pCube2
-    2300004: pPlane1
-    2300006: house_GEO
-    3300000: pCube1
-    3300002: pCube2
-    3300004: pPlane1
-    3300006: house_GEO
-    4300000: pCube1
-    4300002: pCube2
-    4300004: pPlane1
-    4300006: house_GEO
+    100000: mamaBear_bed_GEO
+    100002: mamaBear_duve_GEO
+    100004: //RootNode
+    400000: mamaBear_bed_GEO
+    400002: mamaBear_duve_GEO
+    400004: //RootNode
+    2300000: mamaBear_bed_GEO
+    2300002: mamaBear_duve_GEO
+    3300000: mamaBear_bed_GEO
+    3300002: mamaBear_duve_GEO
+    4300000: mamaBear_duve_GEO
+    4300002: mamaBear_bed_GEO
     9500000: //RootNode
   materials:
     importMaterials: 1
