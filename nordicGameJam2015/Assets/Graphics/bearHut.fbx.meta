@@ -8,11 +8,13 @@ ModelImporter:
     100004: pCube2
     100006: pPlane1
     100008: house_GEO
+    100010: group1
     400000: //RootNode
     400002: pCube1
     400004: pCube2
     400006: pPlane1
     400008: house_GEO
+    400010: group1
     2300000: pCube1
     2300002: pCube2
     2300004: pPlane1
