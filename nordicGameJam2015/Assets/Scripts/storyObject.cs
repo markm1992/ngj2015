@@ -9,6 +9,7 @@ public class storyObject : MonoBehaviour {
 	AudioClip selected;
 	int rand;
 	public string displayText;
+	public bool isPorridge = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -29,11 +30,23 @@ public class storyObject : MonoBehaviour {
 			story.trigger(storyNum, displayText);
 			animation.Play ();
 			done = true;
+			if(isPorridge)
+			{
+				StartCoroutine("off");
+			}
 		}
+	}
+
+	IEnumerator off()
+	{
+		yield return new WaitForSeconds (1f);
+		renderer.enabled = false;
 	}
 
 	public void reset()
 	{
+		StopCoroutine ("off");
 		done = false;
+		renderer.enabled = true;
 	}
 }

@@ -60,13 +60,13 @@ public class PlayerController : MonoBehaviour {
 		if (other.tag == "Story" && Input.GetKeyDown (KeyCode.E) && canInput) {
 			canInput = false;
 			animator.SetFloat ("speed", 0);
-			animator.StopPlayback();
-			StartCoroutine("interactable");
+			animator.StopPlayback ();
+			StartCoroutine ("interactable");
 			other.gameObject.SendMessage ("trigger", SendMessageOptions.DontRequireReceiver);
 		} else if (other.tag == "Finish" && !timerStarted) {
 			timerStarted = true;
-			StartCoroutine("timer");
-		}
+			StartCoroutine ("timer");
+		} 
 	}
 
 	void OnTriggerExit(Collider other)

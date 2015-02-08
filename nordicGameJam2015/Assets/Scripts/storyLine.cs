@@ -91,9 +91,10 @@ public class storyLine : MonoBehaviour {
 
 	IEnumerator bearSpawn()
 	{
-
+		
+		audioControl.bearAtk ();
+		yield return new WaitForSeconds(1f);
 		player.playAudio (selected);
-		yield return new WaitForSeconds(.5f);
 		bearCam.transform.position = mainCam.transform.position;
 		bearCam.transform.rotation = mainCam.transform.rotation;
 		bearActive = true;
@@ -115,7 +116,7 @@ public class storyLine : MonoBehaviour {
 		}
 		yield return new WaitForSeconds(lerpLength+lookAtDuration);
 		there = false;
-		yield return new WaitForSeconds(lerpLength + .5f);
+		yield return new WaitForSeconds(lerpLength + 1f);
 		gui.enabled = false;
 		//play death
 		yield return new WaitForSeconds(1f);
@@ -127,6 +128,7 @@ public class storyLine : MonoBehaviour {
 	{
 		rand = Random.Range (0, bearAudio.Length);
 		selected = bearAudio [rand];
+		audioControl.playAudio ();
 		player.transform.position = pos;
 		player.transform.rotation = rot;
 		for (int i = 0; i<storyObjects.Length; i++) {

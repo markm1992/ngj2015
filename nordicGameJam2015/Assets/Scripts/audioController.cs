@@ -30,4 +30,9 @@ public class audioController : MonoBehaviour {
 		selected = background [difficulty];
 		audio.Play ();
 	}
+	public void playAudio()
+	{
+		selected = background [difficulty];
+		audio.Play ();
+	}
 }

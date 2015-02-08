@@ -7,6 +7,7 @@ public class animationInteraction : MonoBehaviour {
 	public feedbackSystem feedback;
 	public string onText;
 	public string offText;
+	bool canClick = true;
 
 	// Use this for initialization
 	void Start () {
@@ -19,8 +20,9 @@ public class animationInteraction : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E))
+        if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E) && canClick)
         {
+			canClick = false;
             on = !on;
             if (on)
             {
@@ -36,4 +38,9 @@ public class animationInteraction : MonoBehaviour {
             }
         }
     }
+
+	void OnTriggerExit(Collider other)
+	{
+		canClick = true;
+	}
 }

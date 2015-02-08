@@ -22,6 +22,7 @@ public class feedbackSystem : MonoBehaviour {
 	}
 
 	public void displayText(string temp){
+		StopCoroutine ("display");
 		StartCoroutine ("display",temp);
 	}
 
