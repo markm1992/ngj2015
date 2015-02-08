@@ -115,8 +115,8 @@ public class PlayerController : MonoBehaviour {
 
 	IEnumerator interactable()
 	{
-		yield return new WaitForSeconds(1f);
-		canInput = true;
+		//yield return new WaitForSeconds(1f);
+		//canInput = true;
 		yield return true;
 	}
 
