@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
     public float rotateSpeed = 180;
     float rsInput;
     public float walkSpeed = 4;
-    public float turnSpeed = 4;
+	public float turnSpeed = 4;
     float msInput;
     float tsInput;
 	public storyLine story;
@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour {
 	public Transform mainCam;
 	Vector3 rot;
 	float x;
+	float MovementDirection;
+	public Transform playerModel;
 
 	// Use this for initialization
 	void Start () {
@@ -35,13 +37,17 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (canInput) {
-			msInput = Input.GetAxis ("Vertical");
-			transform.Translate (new Vector3 (0, 0, msInput * walkSpeed * Time.deltaTime));
-			tsInput = Input.GetAxis ("Horizontal");
-			transform.Translate (new Vector3 (tsInput * turnSpeed * Time.deltaTime, 0, 0));
+			Vector3 forward = mainCam.forward;
+			forward.y = 0;
+			forward = forward.normalized;
+			Vector3 right = mainCam.right;
+			Vector3 MovementDirection = (Input.GetAxis("Horizontal") * right + Input.GetAxis("Vertical") * forward)* walkSpeed;
+			transform.rigidbody.velocity = new Vector3(MovementDirection.x,rigidbody.velocity.y,MovementDirection.z);
+
 			audioTimer += Time.deltaTime;
-			if (Mathf.Abs (msInput) > .05 || Mathf.Abs (tsInput)>.05)
+			if(transform.rigidbody.velocity != Vector3.zero)
 			{
+				playerModel.rotation = Quaternion.RotateTowards(playerModel.rotation, Quaternion.LookRotation(new Vector3(transform.rigidbody.velocity.x,0,transform.rigidbody.velocity.z)), Time.deltaTime * rotateSpeed);
 				if (audioTimer >= repeatTime){
 					audio.Play();
 					audioTimer = 0;
@@ -55,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			if (Input.GetAxis ("Mouse X") > .1 || Input.GetAxis ("Mouse X") < -.1) {
 				rsInput = Input.GetAxis ("Mouse X");
-				transform.Rotate (new Vector3 (0, rsInput * rotateSpeed * Time.deltaTime, 0));
+				mainCam.RotateAround(transform.position,Vector3.up, rsInput * rotateSpeed * Time.deltaTime);
 			}
 			if (Input.GetMouseButton(0) && (Input.GetAxis ("Mouse Y") > .1 || Input.GetAxis ("Mouse Y") < -.1)) {
 				rot = mainCam.eulerAngles;

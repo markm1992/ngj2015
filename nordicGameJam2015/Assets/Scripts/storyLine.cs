@@ -41,6 +41,8 @@ public class storyLine : MonoBehaviour {
 	Transform posBear;
 	Transform posChar;
 	public Camera atkCam;
+	AudioClip endBear;
+	AudioClip endChar;
 
 	// Use this for initialization
 	void Start () {
@@ -139,12 +141,14 @@ public class storyLine : MonoBehaviour {
 		tempBear2.GetComponentInChildren<Canvas> ().enabled =false;
 		player.transform.position = posChar.position;
 		player.transform.rotation = posChar.rotation;
-		atkCam.enabled = true;
+
 		mainCam.enabled = false;
 		yield return new WaitForSeconds(1f);
+		atkCam.enabled = true;
+		yield return new WaitForSeconds(1f);
 		gui.enabled = false;
-		bearAnim.SetTrigger ("attack");
 		player.playAnim ("die");
+		bearAnim.SetTrigger ("attack");
 		yield return new WaitForSeconds(4f);
 		GameObject.Destroy (tempBear);
 		mapEnd (tempBear2);
