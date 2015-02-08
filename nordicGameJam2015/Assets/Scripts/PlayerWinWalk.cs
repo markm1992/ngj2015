@@ -11,5 +11,10 @@ public class PlayerWinWalk : MonoBehaviour
 		transform.Translate (Vector3.forward * walkSpeed * Time.deltaTime);
 		animator.SetFloat ("speed", walkSpeed);
 	}
+	
+	void OnTriggerEnter ()
+	{
+		walkSpeed = 0f;
+	}
 }
 
