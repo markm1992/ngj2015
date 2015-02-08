@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class firePlace : MonoBehaviour {
-    bool on = true;
-	public GameObject fire;
+public class animationInteraction : MonoBehaviour {
+    public bool on = true;
+	public GameObject particle;
+	public feedbackSystem feedback;
+	public string onText;
+	public string offText;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -20,12 +24,14 @@ public class firePlace : MonoBehaviour {
             on = !on;
             if (on)
             {
-				fire.SetActive(true);
+				feedback.displayText(onText);
+				particle.SetActive(true);
 				audio.Play ();
             }
             else
             {
-				fire.SetActive(false);
+				feedback.displayText(offText);
+				particle.SetActive(false);
 				audio.Stop();
             }
         }

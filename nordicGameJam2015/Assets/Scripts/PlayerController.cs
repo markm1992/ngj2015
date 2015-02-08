@@ -13,10 +13,18 @@ public class PlayerController : MonoBehaviour {
 	public bool canInput = false;
 	bool obs = true;
 	bool timerStarted = false;
+	public AudioClip[] clips;
+	AudioClip selected;
+	int rand;
+	public float repeatTime = .35f;
+	float audioTimer = 0f;
 
 	// Use this for initialization
 	void Start () {
 		canInput = false;
+		rand = Random.Range (0, clips.Length);
+		selected = clips [rand];
+		audio.clip = selected;
 	}
 	
 	// Update is called once per frame
@@ -26,10 +34,20 @@ public class PlayerController : MonoBehaviour {
 			transform.Translate (new Vector3 (0, 0, msInput * walkSpeed * Time.deltaTime));
 			tsInput = Input.GetAxis ("Horizontal");
 			transform.Translate (new Vector3 (tsInput * turnSpeed * Time.deltaTime, 0, 0));
-			if (Mathf.Abs (msInput) > 0)
-				animator.SetFloat ("speed", Mathf.Abs (msInput));
+			audioTimer += Time.deltaTime;
+			if (Mathf.Abs (msInput) > .05 || Mathf.Abs (tsInput)>.05)
+			{
+				if (audioTimer >= repeatTime){
+					audio.Play();
+					audioTimer = 0;
+				}
+				animator.SetFloat ("speed", 1);
+			}
 			else
-				animator.SetFloat ("speed", Mathf.Abs (tsInput));
+			{
+				audio.Stop();
+				animator.SetFloat ("speed", 0);
+			}
 			if (Input.GetAxis ("Mouse X") > .1 || Input.GetAxis ("Mouse X") < -.1) {
 				rsInput = Input.GetAxis ("Mouse X");
 				transform.Rotate (new Vector3 (0, rsInput * rotateSpeed * Time.deltaTime, 0));
@@ -39,7 +57,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerStay(Collider other)
 	{
-		if (other.tag == "Story" && Input.GetKeyDown (KeyCode.E)) {
+		if (other.tag == "Story" && Input.GetKeyDown (KeyCode.E) && canInput) {
 			canInput = false;
 			animator.SetFloat ("speed", 0);
 			animator.StopPlayback();
@@ -78,6 +96,9 @@ public class PlayerController : MonoBehaviour {
 	public void resetObs()
 	{
 		obs = true;
+		rand = Random.Range (0, clips.Length);
+		selected = clips [rand];
+		audio.clip = selected;
 	}
 
 	IEnumerator interactable()
@@ -90,5 +111,14 @@ public class PlayerController : MonoBehaviour {
 	void win()
 	{
 		story.win();
+	}
+
+	public void playAudio(AudioClip playIt)
+	{
+		AudioClip temp = audio.clip;
+		audio.clip = playIt;
+		audio.Stop ();
+		audio.Play ();
+		audio.clip = temp;
 	}
 }

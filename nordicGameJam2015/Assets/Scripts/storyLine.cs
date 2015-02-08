@@ -24,12 +24,21 @@ public class storyLine : MonoBehaviour {
 	public GameObject obstacle2;
 	Vector3 pos;
 	Quaternion rot;
-
+	public AudioClip[] bearAudio;
+	AudioClip selected;
+	int rand;
+	public feedbackSystem feedback;
+	public audioController audioControl;
+	public Light light;
+	public ParticleEmitter snow;
 
 	// Use this for initialization
 	void Start () {
+		light.color = new Vector4 (0.3f, .3f, 0.3f, 1);
 		pos = player.transform.position;
 		rot = player.transform.rotation;
+		rand = Random.Range (0, bearAudio.Length);
+		selected = bearAudio [rand];
 	}
 	
 	// Update is called once per frame
@@ -48,25 +57,45 @@ public class storyLine : MonoBehaviour {
 		}
 	}
 
-	public void trigger(int num)
+	public void trigger(int num, string temp)
 	{
-		if ((steps - 1) / 3 == (num - 1) / 3) {
+		rand = Random.Range (0, 2);
+		if ((steps - 1) / 3 == (num - 1) / 3 && rand ==1) {
 			steps--;
-			if(steps == 3)
-				obstacle1.SetActive(true);
-			else if(steps == 0)
-				obstacle2.SetActive(false);
-			StopCoroutine(bearSpawn ());
-			StartCoroutine(bearSpawn());
+			if (steps == 3)
+			{
+				audioControl.nextDifficulty();
+				obstacle1.SetActive (true);
+				light.color = new Vector4 (0.2f, .2f, 0.2f, 1);
+				snow.minEmission += 100;
+				snow.maxEmission += 100;
+				snow.minSize += .2f;
+				snow.maxSize += .25f;
+			}
+			else if (steps == 0)
+			{
+				audioControl.nextDifficulty();
+				obstacle2.SetActive (true);
+				light.color = new Vector4 (0.1f, .1f, 0.1f, 1);
+				snow.minEmission += 150;
+				snow.maxEmission += 150;
+				snow.minSize += .2f;
+				snow.maxSize += .25f;
+			}
+			StopCoroutine (bearSpawn ());
+			StartCoroutine (bearSpawn ());
+		} else {
+			feedback.displayText(temp);
 		}
 	}
 
 	IEnumerator bearSpawn()
 	{
+
+		player.playAudio (selected);
 		yield return new WaitForSeconds(.5f);
 		bearCam.transform.position = mainCam.transform.position;
 		bearCam.transform.rotation = mainCam.transform.rotation;
-		//tempCamPos = mainCam.transform;
 		bearActive = true;
 		there = true;
 		player.canInput = false;
@@ -96,6 +125,8 @@ public class storyLine : MonoBehaviour {
 
 	void mapEnd(GameObject destroyObj)
 	{
+		rand = Random.Range (0, bearAudio.Length);
+		selected = bearAudio [rand];
 		player.transform.position = pos;
 		player.transform.rotation = rot;
 		for (int i = 0; i<storyObjects.Length; i++) {

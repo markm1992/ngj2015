@@ -8,6 +8,7 @@ public class storyObject : MonoBehaviour {
 	public AudioClip[] clips;
 	AudioClip selected;
 	int rand;
+	public string displayText;
 	
 	// Use this for initialization
 	void Start () {
@@ -25,7 +26,7 @@ public class storyObject : MonoBehaviour {
 	{
 		if (!done) {
 			audio.Play();
-			story.trigger(storyNum);
+			story.trigger(storyNum, displayText);
 			animation.Play ();
 			done = true;
 		}
