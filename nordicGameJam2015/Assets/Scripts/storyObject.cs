@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class storyObject : MonoBehaviour {
 	public int storyNum;
@@ -10,12 +11,16 @@ public class storyObject : MonoBehaviour {
 	int rand;
 	public string displayText;
 	public bool isPorridge = false;
+    public Slider hunger;
+	public Slider tired;
 	
 	// Use this for initialization
 	void Start () {
 		rand = Random.Range (0, clips.Length);
 		selected = clips [rand];
 		audio.clip = selected;
+		hunger.value = .2f;
+		tired.value = .2f;
 	}
 	
 	// Update is called once per frame
@@ -32,8 +37,11 @@ public class storyObject : MonoBehaviour {
 			done = true;
 			if(isPorridge)
 			{
+				hunger.value = 1f;
 				StartCoroutine("off");
 			}
+			else
+				tired.value = 1f;
 		}
 	}
 
@@ -47,6 +55,11 @@ public class storyObject : MonoBehaviour {
 	{
 		StopCoroutine ("off");
 		done = false;
-		renderer.enabled = true;
+		if(isPorridge)
+		{
+			renderer.enabled = true;
+		}
+		hunger.value = .2f;
+		tired.value = .2f;
 	}
 }

@@ -22,6 +22,7 @@ public class animationInteraction : MonoBehaviour {
     {
         if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E) && canClick)
         {
+			other.gameObject.GetComponent<PlayerController>().playAnim("interact");
 			canClick = false;
             on = !on;
             if (on)

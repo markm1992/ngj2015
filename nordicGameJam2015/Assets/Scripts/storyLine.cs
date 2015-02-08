@@ -25,12 +25,22 @@ public class storyLine : MonoBehaviour {
 	Vector3 pos;
 	Quaternion rot;
 	public AudioClip[] bearAudio;
+	Animator bearAnim;
 	AudioClip selected;
 	int rand;
 	public feedbackSystem feedback;
 	public audioController audioControl;
 	public Light light;
 	public ParticleEmitter snow;
+	public Transform bearPosBed;
+	public Transform bearPosKitchen;
+	public Transform charPosBed;
+	public Transform charPosKitchen;
+	public Transform camPosBed;
+	public Transform camPosKitchen;
+	Transform posBear;
+	Transform posChar;
+	public Camera atkCam;
 
 	// Use this for initialization
 	void Start () {
@@ -59,8 +69,8 @@ public class storyLine : MonoBehaviour {
 
 	public void trigger(int num, string temp)
 	{
-		rand = Random.Range (0, 2);
-		if ((steps - 1) / 3 == (num - 1) / 3 && rand ==1) {
+		rand = Random.Range (0, 3);
+		if ((steps - 1) / 3 == (num - 1) / 3 && rand >0) {
 			steps--;
 			if (steps == 3)
 			{
@@ -106,9 +116,17 @@ public class storyLine : MonoBehaviour {
 		bearText = tempBear.GetComponentInChildren<Text> ();
 		switch ((steps - 1) / 3) {
 		case 0:
+			posChar = charPosKitchen;
+			posBear = bearPosKitchen;
+			atkCam.transform.position = camPosKitchen.position;
+			atkCam.transform.rotation = camPosKitchen.rotation;
 			bearText.text = "My Porridge!";
 			break;
 		case 1:
+			posChar = charPosBed;
+			posBear = bearPosBed;
+			atkCam.transform.position = camPosBed.position;
+			atkCam.transform.rotation = camPosBed.rotation;
 			bearText.text = "Who is sleeping in my bed?!";
 			break;
 		case 2:
@@ -116,11 +134,20 @@ public class storyLine : MonoBehaviour {
 		}
 		yield return new WaitForSeconds(lerpLength+lookAtDuration);
 		there = false;
-		yield return new WaitForSeconds(lerpLength + 1f);
-		gui.enabled = false;
-		//play death
+		GameObject tempBear2 = Instantiate(bear,posBear.position,Quaternion.identity) as GameObject;
+		bearAnim = tempBear2.GetComponentInChildren<Animator> ();
+		tempBear2.GetComponentInChildren<Canvas> ().enabled =false;
+		player.transform.position = posChar.position;
+		player.transform.rotation = posChar.rotation;
+		atkCam.enabled = true;
+		mainCam.enabled = false;
 		yield return new WaitForSeconds(1f);
-		mapEnd (tempBear);
+		gui.enabled = false;
+		bearAnim.SetTrigger ("attack");
+		player.playAnim ("die");
+		yield return new WaitForSeconds(4f);
+		GameObject.Destroy (tempBear);
+		mapEnd (tempBear2);
 		yield return true;
 	}
 
@@ -137,7 +164,7 @@ public class storyLine : MonoBehaviour {
 		menuCam.enabled = true;
 		menu.enabled = true;
 		GameObject.Destroy (destroyObj);
-		bearCam.enabled = false;
+		atkCam.enabled = false;
 		StopCoroutine ("bearSpawn");
 	}
 

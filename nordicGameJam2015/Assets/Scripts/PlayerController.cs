@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour {
 	int rand;
 	public float repeatTime = .35f;
 	float audioTimer = 0f;
+	public Transform mainCam;
+	Vector3 rot;
+	float x;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +28,8 @@ public class PlayerController : MonoBehaviour {
 		rand = Random.Range (0, clips.Length);
 		selected = clips [rand];
 		audio.clip = selected;
+		rot = mainCam.eulerAngles;
+		x = rot.x;
 	}
 	
 	// Update is called once per frame
@@ -52,12 +57,19 @@ public class PlayerController : MonoBehaviour {
 				rsInput = Input.GetAxis ("Mouse X");
 				transform.Rotate (new Vector3 (0, rsInput * rotateSpeed * Time.deltaTime, 0));
 			}
+			if (Input.GetMouseButton(0) && (Input.GetAxis ("Mouse Y") > .1 || Input.GetAxis ("Mouse Y") < -.1)) {
+				rot = mainCam.eulerAngles;
+				float mouseY = Input.GetAxis("Mouse Y") * rotateSpeed/3 * Time.deltaTime;
+				rot.x = Mathf.Clamp(rot.x + mouseY, x-30f, x+10f);
+				mainCam.eulerAngles = rot;
+			}
 		}
 	}
 
 	void OnTriggerStay(Collider other)
 	{
 		if (other.tag == "Story" && Input.GetKeyDown (KeyCode.E) && canInput) {
+			animator.SetTrigger ("interact");
 			canInput = false;
 			animator.SetFloat ("speed", 0);
 			animator.StopPlayback ();
@@ -103,7 +115,7 @@ public class PlayerController : MonoBehaviour {
 
 	IEnumerator interactable()
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1f);
 		canInput = true;
 		yield return true;
 	}
@@ -120,5 +132,19 @@ public class PlayerController : MonoBehaviour {
 		audio.Stop ();
 		audio.Play ();
 		audio.clip = temp;
+	}
+
+	public void playAnim(string anim)
+	{
+		StartCoroutine ("playAnimWait", anim);
+	}
+
+	IEnumerator playAnimWait(string anim)
+	{
+		animator.SetTrigger (anim);
+		canInput = false;
+		yield return new WaitForSeconds (1f);
+		canInput = true;
+		yield return true;
 	}
 }

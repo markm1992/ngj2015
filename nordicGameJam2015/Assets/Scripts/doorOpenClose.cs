@@ -23,9 +23,9 @@ public class doorOpenClose : MonoBehaviour {
 	void Update () {
 		if (openUp){
 			if (closed) {
-				transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, openRot, openTime * Time.deltaTime);
+				transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, openRot, openTime*2f*Time.deltaTime);
 			} else {
-				transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, closedRot, openTime * Time.deltaTime);
+				transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, closedRot, openTime*2f*Time.deltaTime);
 			}
 		}
 	}
@@ -34,6 +34,7 @@ public class doorOpenClose : MonoBehaviour {
 	{
 		if(other.tag == "Player" && Input.GetKeyDown(KeyCode.E) && canClick)
 		{
+			other.gameObject.GetComponent<PlayerController>().playAnim("interact");
 			canClick = false;
 			closed = !closed;
 			if (closed)
@@ -54,7 +55,7 @@ public class doorOpenClose : MonoBehaviour {
 
 	IEnumerator opening()
 	{
-		yield return new WaitForSeconds(openTime+.5f);
+		yield return new WaitForSeconds(openTime+1f);
 		canClick = true;
 		openUp = false;
 	}
