@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\PlayerWinWalk.cs" />
      <Compile Include="Assets\Scripts\animationInteraction.cs" />
      <Compile Include="Assets\Scripts\audioController.cs" />
+     <Compile Include="Assets\Scripts\doorOpenClose.cs" />
      <Compile Include="Assets\Scripts\feedbackSystem.cs" />
      <Compile Include="Assets\Scripts\gameStart.cs" />
      <Compile Include="Assets\Scripts\storyLine.cs" />
